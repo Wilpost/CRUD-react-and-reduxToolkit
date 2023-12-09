@@ -15,7 +15,8 @@
     "@tremor/react": "^3.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "9.0.2"
+    "react-redux": "9.0.2",
+    "sonner": "^1.2.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
