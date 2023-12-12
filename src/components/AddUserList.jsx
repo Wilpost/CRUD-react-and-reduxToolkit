@@ -17,14 +17,15 @@ export function AddUserList() {
 		const email = formData.get("email");
 		const github = formData.get("github");
 
-		if (!name && !email && !github) {
+		if (!name || !email || !github) {
 			setError("ko");
 			return toast.error("Completa los campos");
 		}
 
+		setError("ok");
 		toast.success(`Se agrego a ${name}`);
 		dispatch(addNewUser({ name, email, github }));
-		setError("ok");
+
 		form.reset();
 	};
 

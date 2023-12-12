@@ -1,6 +1,5 @@
 import {
 	Badge,
-	Button,
 	Card,
 	Table,
 	TableBody,
@@ -10,13 +9,20 @@ import {
 	Title,
 } from "@tremor/react";
 
+import { toast } from "sonner";
 import { userStoreControl } from "../Hooks/useStoreControl";
-import { DeleteIcon, EditUserInfo } from "./Icons";
+import { UsersTable } from "./usersTable";
 export function UserBoardList() {
 	const { removeUser, users } = userStoreControl();
 
+	const handleRemoveUser = (id, name) => {
+		toast.warning(`Se ha eliminado a ${name}`);
+
+		removeUser(id);
+	};
+
 	return (
-		<Card className="h-[567px] w-[736px] overflow-auto">
+		<Card className="h-[567px] max-w-[778px] flex flex-col w-full overflow-auto overflow-x-auto [&::-webkit-scrollbar-thumb]:bg-mainLightBlue [&::-webkit-scrollbar-button]:appearance-none [&::-webkit-scrollbar-button]:bg-mainLightBlue [&::-webkit-scrollbar-thumb]:appearance-none [&::-webkit-scrollbar-track]:bg-mainLightBlue">
 			<Table>
 				<TableBody>
 					<TableRow>
@@ -27,7 +33,7 @@ export function UserBoardList() {
 					</TableRow>
 				</TableBody>
 			</Table>
-			<Table className="mt-5">
+			<Table>
 				<TableBody>
 					<TableRow>
 						<TableHeaderCell>Name</TableHeaderCell>
@@ -36,30 +42,13 @@ export function UserBoardList() {
 					</TableRow>
 				</TableBody>
 				<TableBody>
-					{users.map((item) => (
-						<TableRow key={item.id}>
-							<TableCell className="flex items-center gap-3">
-								{item.id}
-								<img
-									className="w-10 h-10 rounded-full"
-									src={`https://unavatar.io/github/${item.github}`}
-									alt="User profile to github"
-								/>
-								{item.name}
-							</TableCell>
-							<TableCell>{item.email}</TableCell>
-							<TableCell>
-								<Button>
-									<EditUserInfo />
-								</Button>
-							</TableCell>
-							<TableCell>
-								<Button onClick={() => removeUser(item.id)}>
-									<DeleteIcon />
-								</Button>
-							</TableCell>
-						</TableRow>
-					))}
+					{users.length > 0 ? (
+						<UsersTable users={users} handleRemoveUser={handleRemoveUser} />
+					) : (
+						<div className="w-full flex justify-center">
+							<Title>No hay usuarios aún</Title>
+						</div>
+					)}
 				</TableBody>
 			</Table>
 		</Card>

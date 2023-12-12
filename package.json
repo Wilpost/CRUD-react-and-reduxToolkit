@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
-    "@reduxjs/toolkit": "^2.0.1",
+    "@reduxjs/toolkit": "2.0.1",
     "@tremor/react": "^3.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,6 +29,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "postcss": "^8.4.32",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0",
     "tailwindcss": "^3.3.6",
     "vite": "^5.0.0"
   }

@@ -28,9 +28,9 @@ const DEFAULT_STATE = [
 ];
 
 const initialState = (() => {
-	const storage = localStorage.getItem("__redux__state__");
+	const storage = localStorage.getItem("__redux_state__");
 	if (storage) {
-		return JSON.parse(storage.users);
+		return JSON.parse(storage.dataState);
 	}
 	return DEFAULT_STATE;
 })();

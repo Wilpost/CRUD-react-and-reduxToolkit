@@ -14,6 +14,7 @@ module.exports = {
 		extend: {
 			colors: {
 				// light mode
+				mainLightBlue: "#28be",
 				tremor: {
 					brand: {
 						faint: "#eff6ff", // blue-50
@@ -130,5 +131,13 @@ module.exports = {
 				/^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
 		},
 	],
-	plugins: [require("@headlessui/tailwindcss")],
+	plugins: [
+		require("@headlessui/tailwindcss"),
+		({ addVariant }) => {
+			addVariant("slider-thumb", [
+				"&::-webkit-slider-thumb",
+				"&::slider-thumb",
+			]);
+		},
+	],
 };
