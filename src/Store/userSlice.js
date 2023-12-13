@@ -30,7 +30,7 @@ const DEFAULT_STATE = [
 const initialState = (() => {
 	const storage = localStorage.getItem("__redux_state__");
 	if (storage) {
-		return JSON.parse(storage.dataState);
+		return JSON.parse(storage.users);
 	}
 	return DEFAULT_STATE;
 })();
