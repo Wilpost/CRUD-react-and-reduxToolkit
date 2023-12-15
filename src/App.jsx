@@ -5,7 +5,7 @@ import "./index.css";
 
 function App() {
 	return (
-		<main className="flex items-center gap-4">
+		<main className="w-full h-full flex justify-between items-center gap-4">
 			<AddUserList />
 			<UserBoardList />
 			<Toaster richColors />

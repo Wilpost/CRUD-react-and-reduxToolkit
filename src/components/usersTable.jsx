@@ -1,7 +1,10 @@
 import { Button, TableCell, TableRow } from "@tremor/react";
+import { userStoreControl } from "../Hooks/useStoreControl";
 import { DeleteIcon, EditUserInfo } from "./Icons";
 
-export function UsersTable({ users = [], handleRemoveUser }) {
+export function UsersTable() {
+	const { removeUser, users } = userStoreControl();
+
 	return users.map((item) => {
 		return (
 			<TableRow key={item.id}>
@@ -21,7 +24,7 @@ export function UsersTable({ users = [], handleRemoveUser }) {
 					</Button>
 				</TableCell>
 				<TableCell>
-					<Button onClick={() => handleRemoveUser(item.id, item.name)}>
+					<Button onClick={() => removeUser(item)}>
 						<DeleteIcon />
 					</Button>
 				</TableCell>

@@ -23,21 +23,21 @@ export function AddUserList() {
 		}
 
 		setError("ok");
-		toast.success(`Se agrego a ${name}`);
-		dispatch(addNewUser({ name, email, github }));
-
 		form.reset();
+		dispatch(addNewUser({ name, email, github }));
 	};
 
 	return (
 		<>
-			<Card className="h-full text-center mt-7 w-[350px]">
+			<Card className="text-center w-[350px]">
 				<Title className="mb-5">Add new user</Title>
 				<form onSubmit={handleSubmit}>
 					<TextInput className="mb-5" placeholder="Name" name="name" />
 					<TextInput className="mb-5" placeholder="Email" name="email" />
 					<TextInput className="mb-5" placeholder="Github" name="github" />
-					<Button type="submit">Add</Button>
+					<Button className="w-full" type="submit">
+						Add
+					</Button>
 				</form>
 			</Card>
 		</>

@@ -8,21 +8,13 @@ import {
 	TableRow,
 	Title,
 } from "@tremor/react";
-
-import { toast } from "sonner";
 import { userStoreControl } from "../Hooks/useStoreControl";
 import { UsersTable } from "./usersTable";
 export function UserBoardList() {
-	const { removeUser, users } = userStoreControl();
-
-	const handleRemoveUser = (id, name) => {
-		toast.warning(`Se ha eliminado a ${name}`);
-
-		removeUser(id);
-	};
+	const { users } = userStoreControl();
 
 	return (
-		<Card className="h-[567px] max-w-[778px] flex flex-col w-full overflow-auto overflow-x-auto [&::-webkit-scrollbar-thumb]:bg-mainLightBlue [&::-webkit-scrollbar-button]:appearance-none [&::-webkit-scrollbar-button]:bg-mainLightBlue [&::-webkit-scrollbar-thumb]:appearance-none [&::-webkit-scrollbar-track]:bg-mainLightBlue">
+		<Card className="h-[567px] flex flex-col w-full overflow-auto overflow-x-auto [&::-webkit-scrollbar-thumb]:bg-mainLightBlue [&::-webkit-scrollbar-button]:appearance-none [&::-webkit-scrollbar-button]:bg-mainLightBlue [&::-webkit-scrollbar-thumb]:appearance-none [&::-webkit-scrollbar-track]:bg-mainLightBlue">
 			<Table>
 				<TableBody>
 					<TableRow>
@@ -33,7 +25,7 @@ export function UserBoardList() {
 					</TableRow>
 				</TableBody>
 			</Table>
-			<Table>
+			<Table className="overflow-x-hidden">
 				<TableBody>
 					<TableRow>
 						<TableHeaderCell>Name</TableHeaderCell>
@@ -43,9 +35,9 @@ export function UserBoardList() {
 				</TableBody>
 				<TableBody>
 					{users.length > 0 ? (
-						<UsersTable users={users} handleRemoveUser={handleRemoveUser} />
+						<UsersTable users={users} />
 					) : (
-						<div className="w-full flex justify-center">
+						<div className="w-[400px] text-end">
 							<Title>No hay usuarios aún</Title>
 						</div>
 					)}
