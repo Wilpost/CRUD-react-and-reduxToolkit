@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "sonner";
 
 const DEFAULT_STATE = [
 	{
@@ -40,6 +39,14 @@ const userSlice = createSlice({
 	name: "users",
 	initialState,
 	reducers: {
+		editUserData: (state, action) => {
+			const userSel = state.find((item) => item.id === action.payload.id);
+			const { id } = state.find((item) => item.id === action.payload.id);
+			const indexUser = state.indexOf(userSel);
+
+			state[indexUser] = { id, ...action.payload.data };
+			return state;
+		},
 		rollbackUser: (state, action) => {
 			return [...action.payload.users];
 		},
@@ -48,7 +55,6 @@ const userSlice = createSlice({
 		},
 		addUserList: (state, action) => {
 			const id = crypto.randomUUID();
-			toast.success(`Se agrego a ${action.payload.name}`);
 			return [...state, { id, ...action.payload }];
 		},
 		deleteUser: (state, action) => {
@@ -59,5 +65,10 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { deleteUser, addUserList, rollbackState, rollbackUser } =
-	userSlice.actions;
+export const {
+	deleteUser,
+	addUserList,
+	rollbackState,
+	rollbackUser,
+	editUserData,
+} = userSlice.actions;

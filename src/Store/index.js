@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import { fecthToDataBase } from "../Services/fetchApi";
+import modalSlice from "./modalSlice";
 import userSlice, { rollbackState } from "./userSlice";
 
 // No agregar usuario si ya existe
@@ -13,17 +14,17 @@ const persistenceStorageMidleware = (store) => (next) => (action) => {
 };
 
 const verifyAlredyUserInTheState = (store) => (next) => (action) => {
-	const { type, payload } = action;
 	const previusState = store.getState();
 
-	if (type === "users/addUserList") {
-		const userPayload = payload.name;
+	if (action.type === "users/addUserList") {
+		const userPayload = action.payload.name;
+
 		const isAleredyUserDefined = previusState.users.some(
 			(item) => item.name === userPayload,
 		);
 
 		if (isAleredyUserDefined) {
-			toast.warning("Este usuario ya existe");
+			toast.warning("This user already exists");
 			return store.dispatch(rollbackState(previusState.users));
 		}
 	}
@@ -47,6 +48,7 @@ const sincWihtBaseData = (store) => (next) => (action) => {
 export const store = configureStore({
 	reducer: {
 		users: userSlice,
+		modal: modalSlice,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(

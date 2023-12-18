@@ -14,12 +14,12 @@ export function UserBoardList() {
 	const { users } = userStoreControl();
 
 	return (
-		<Card className="h-[567px] flex flex-col w-full overflow-auto overflow-x-auto [&::-webkit-scrollbar-thumb]:bg-mainLightBlue [&::-webkit-scrollbar-button]:appearance-none [&::-webkit-scrollbar-button]:bg-mainLightBlue [&::-webkit-scrollbar-thumb]:appearance-none [&::-webkit-scrollbar-track]:bg-mainLightBlue">
+		<Card>
 			<Table>
 				<TableBody>
 					<TableRow>
 						<TableCell className="flex items-center gap-2">
-							<Title>Usuarios</Title>
+							<Title>Users</Title>
 							<Badge>{users.length}</Badge>
 						</TableCell>
 					</TableRow>
@@ -28,17 +28,18 @@ export function UserBoardList() {
 			<Table className="overflow-x-hidden">
 				<TableBody>
 					<TableRow>
-						<TableHeaderCell>Name</TableHeaderCell>
+						<TableHeaderCell>Id</TableHeaderCell>
+						<TableHeaderCell>Username</TableHeaderCell>
 						<TableHeaderCell>Email</TableHeaderCell>
 						<TableHeaderCell>Status</TableHeaderCell>
 					</TableRow>
 				</TableBody>
 				<TableBody>
 					{users.length > 0 ? (
-						<UsersTable users={users} />
+						<UsersTable />
 					) : (
 						<div className="w-[400px] text-end">
-							<Title>No hay usuarios aún</Title>
+							<Title>There are no users yet</Title>
 						</div>
 					)}
 				</TableBody>
